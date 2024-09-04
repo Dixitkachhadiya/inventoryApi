@@ -26,3 +26,18 @@ exports.findOne = (req, res) => {
         message: "Todo name can not be empty"
     });
 }
+
+exports.insertBusinessCategory = (req, res) => {
+    // console.log(req.body.business_name)
+    sqlQuery = 'insert into tbl_add_business(business_name) values (?);';
+
+    connection.query(sqlQuery, [req.body.business_name],
+        function (error, results, filds) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.end(JSON.stringify(results));
+            }
+        }
+    )
+}

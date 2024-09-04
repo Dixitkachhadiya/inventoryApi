@@ -3,4 +3,8 @@ module.exports = (app) => {
 
     app.get('/findOne', apiRoute.findOne);
 
+     // =========================== AddBusiness Category Api's ==================================
+
+     app.post('/insertBusinessCategory',apiRoute.insertBusinessCategory);
+
 }
