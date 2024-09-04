@@ -116,3 +116,17 @@ exports.getInsertedRecord = (req, res) => {
         }
     })
 }
+
+exports.deleteBusinessCategoryRecord = (req, res) => {
+    // console.log(req.params.id);
+    sqlQuery = "delete from tbl_transaction where transaction_id = ?;";
+    connection.query(sqlQuery, [req.params.id],
+        function (error, results, filds) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.json(results);
+            }
+        }
+    )
+}
