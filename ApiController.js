@@ -103,3 +103,16 @@ exports.insertRecord = (req, res) => {
         }
     })
 }
+
+exports.getInsertedRecord = (req, res) => {
+    // console.log(req.params.id);
+    sqlQuery = "select transaction_id, business_category_id, date_format(transaction_date , '%y-%m-%d') as transaction_date ,category_type, transaction_remark, transaction_amount from tbl_transaction where add_business_id = ?;";
+
+    connection.query(sqlQuery, [req.params.id], function (error, results, filds) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(results)
+        }
+    })
+}
