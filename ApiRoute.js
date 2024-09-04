@@ -7,5 +7,7 @@ module.exports = (app) => {
 
      app.post('/insertBusinessCategory',apiRoute.insertBusinessCategory);
      app.get('/getAllbuisnessRecord',apiRoute.getAllbuisnessRecord);
+     app.delete('/deleteRecordByid/:id',apiRoute.deleteRecordByid);
+     
 
 }

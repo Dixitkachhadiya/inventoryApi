@@ -55,3 +55,18 @@ exports.getAllbuisnessRecord = (req, res) => {
         }
     })
 }
+
+
+exports.deleteRecordByid = (req, res) => {
+    sqlQuery = 'delete from tbl_add_business where buisness_id = ?;';
+
+    connection.query(sqlQuery, [req.params.id],
+        function (error, results, filds) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.json(results);
+            }
+        }
+    )
+}
