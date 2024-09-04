@@ -26,4 +26,8 @@ module.exports = (app) => {
     app.get('/getRecordFromEditCashinout/:id',apiRoute.getRecordFromEditCashinout);
     app.put('/updatecashinandoutRecord/:id',apiRoute.updatecashinandoutRecord);
 
+     // ============================= API For Chart =============================
+
+     app.get('/getRecordByBusinessId/:id',apiRoute.getRecordByBusinessId);
+
 }
