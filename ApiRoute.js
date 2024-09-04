@@ -16,5 +16,6 @@ module.exports = (app) => {
     app.post('/insertRecord',apiRoute.insertRecord);
     app.get('/getInsertedRecord/:id',apiRoute.getInsertedRecord);
     app.delete('/deleteBusinessCategoryRecord/:id',apiRoute.deleteBusinessCategoryRecord);
+    app.get('/getCashInCategory/:id',apiRoute.getCashInCategory);
 
 }

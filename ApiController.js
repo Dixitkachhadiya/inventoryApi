@@ -130,3 +130,18 @@ exports.deleteBusinessCategoryRecord = (req, res) => {
         }
     )
 }
+
+exports.getCashInCategory = (req, res) => {
+    // console.log(req.params.id);
+    sqlQuery = 'select * from tbl_business_category where buiness_category_type = "Cash In" and add_business_id = ?;';
+
+    connection.query(sqlQuery, [req.params.id, req.body.buiness_category_type],
+        function (error, results, filds) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.json(results);
+            }
+        }
+    )
+}
