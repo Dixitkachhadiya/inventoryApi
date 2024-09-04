@@ -198,3 +198,27 @@ exports.getRecordFromEditCashinout = (req, res) => {
         }
     )
 }
+
+exports.updatecashinandoutRecord = (req,res) =>{    
+    console.log(req.params.id);
+    sqlQuery = "update tbl_transaction set business_category_id = ?,transaction_date = ?, category_type = ?, transaction_remark = ?, transaction_amount = ?, add_business_id = ? where transaction_id = ?;";
+
+    const useParams = [
+        req.body.business_category_id,
+        req.body.transaction_date,
+        req.body.category_type,
+        req.body.transaction_remark,
+        req.body.transaction_amount,
+        req.body.add_business_id
+    ]
+
+    connection.query(sqlQuery,[...useParams,req.params.id],
+        function(error,results,filds){
+            if (error) {
+                console.log(error);
+            } else {
+                res.end(JSON.stringify(results));
+            }
+        }
+    )
+}

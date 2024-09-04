@@ -24,5 +24,6 @@ module.exports = (app) => {
 
     app.post('/insertCashInAndOutRecord',apiRoute.insertCashInAndOutRecord);
     app.get('/getRecordFromEditCashinout/:id',apiRoute.getRecordFromEditCashinout);
+    app.put('/updatecashinandoutRecord/:id',apiRoute.updatecashinandoutRecord);
 
 }
