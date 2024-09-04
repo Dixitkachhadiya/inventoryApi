@@ -12,11 +12,16 @@ module.exports = (app) => {
 
     // ============================ GetBusiness Api's =================================
 
-    app.get('/getAllbusinessRecordByid/:id',apiRoute.getAllbusinessRecordByid);
-    app.post('/insertRecord',apiRoute.insertRecord);
-    app.get('/getInsertedRecord/:id',apiRoute.getInsertedRecord);
-    app.delete('/deleteBusinessCategoryRecord/:id',apiRoute.deleteBusinessCategoryRecord);
-    app.get('/getCashInCategory/:id',apiRoute.getCashInCategory);
-    app.get('/getCashOutCategory/:id',apiRoute.getCashOutCategory);
+    app.get('/getAllbusinessRecordByid/:id', apiRoute.getAllbusinessRecordByid);
+    app.post('/insertRecord', apiRoute.insertRecord);
+    app.get('/getInsertedRecord/:id', apiRoute.getInsertedRecord);
+    app.delete('/deleteBusinessCategoryRecord/:id', apiRoute.deleteBusinessCategoryRecord);
+    app.get('/getCashInCategory/:id', apiRoute.getCashInCategory);
+    app.get('/getCashOutCategory/:id', apiRoute.getCashOutCategory);
+
+
+    // ================================= Cash in & Cash Out Api's ============================
+
+    app.post('/insertCashInAndOutRecord',apiRoute.insertCashInAndOutRecord);
 
 }
