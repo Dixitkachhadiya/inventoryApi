@@ -23,5 +23,6 @@ module.exports = (app) => {
     // ================================= Cash in & Cash Out Api's ============================
 
     app.post('/insertCashInAndOutRecord',apiRoute.insertCashInAndOutRecord);
+    app.get('/getRecordFromEditCashinout/:id',apiRoute.getRecordFromEditCashinout);
 
 }

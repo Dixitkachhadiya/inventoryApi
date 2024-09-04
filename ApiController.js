@@ -183,3 +183,18 @@ exports.insertCashInAndOutRecord = (req, res) => {
         }
     })
 }
+
+exports.getRecordFromEditCashinout = (req, res) => {
+    console.log(req.params.id);
+    sqlQuery = "select business_category_id, date_format(transaction_date, '%Y-%m-%d') as transaction_date, category_type, transaction_remark, transaction_amount,add_business_id from tbl_transaction where transaction_id = ?;";
+
+    connection.query(sqlQuery, [req.params.id],
+        function (error, results, filds) {
+            if (error) {
+                console.log(error);
+            } else {
+                res.json(results);
+            }
+        }
+    )
+}
