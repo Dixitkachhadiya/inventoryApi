@@ -6,5 +6,6 @@ module.exports = (app) => {
      // =========================== AddBusiness Category Api's ==================================
 
      app.post('/insertBusinessCategory',apiRoute.insertBusinessCategory);
+     app.get('/getAllbuisnessRecord',apiRoute.getAllbuisnessRecord);
 
 }

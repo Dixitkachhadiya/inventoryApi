@@ -41,3 +41,17 @@ exports.insertBusinessCategory = (req, res) => {
         }
     )
 }
+
+
+exports.getAllbuisnessRecord = (req, res) => {
+
+    sqlQuery = 'select * from tbl_add_business;';
+
+    connection.query(sqlQuery, function (error, results, filds) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(results);
+        }
+    })
+}
