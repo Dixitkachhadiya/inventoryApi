@@ -58,7 +58,8 @@ exports.getAllbuisnessRecord = (req, res) => {
 
 
 exports.deleteRecordByid = (req, res) => {
-    sqlQuery = 'delete from tbl_add_business where buisness_id = ?;';
+    console.log(req.params.id)
+    sqlQuery = 'delete from tbl_add_business where bsiness_id = ?;';
 
     connection.query(sqlQuery, [req.params.id],
         function (error, results, filds) {
