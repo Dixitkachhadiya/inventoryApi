@@ -3,11 +3,15 @@ module.exports = (app) => {
 
     app.get('/findOne', apiRoute.findOne);
 
-     // =========================== AddBusiness Category Api's ==================================
+    // =========================== AddBusiness Category Api's ==================================
 
-     app.post('/insertBusinessCategory',apiRoute.insertBusinessCategory);
-     app.get('/getAllbuisnessRecord',apiRoute.getAllbuisnessRecord);
-     app.delete('/deleteRecordByid/:id',apiRoute.deleteRecordByid);
-     
+    app.post('/insertBusinessCategory', apiRoute.insertBusinessCategory);
+    app.get('/getAllbuisnessRecord', apiRoute.getAllbuisnessRecord);
+    app.delete('/deleteRecordByid/:id', apiRoute.deleteRecordByid);
+
+
+    // ============================ GetBusiness Api's =================================
+
+    app.get('/getAllbusinessRecordByid/:id',apiRoute.getAllbusinessRecordByid);
 
 }
