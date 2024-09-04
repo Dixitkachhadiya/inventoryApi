@@ -226,7 +226,7 @@ exports.updatecashinandoutRecord = (req,res) =>{
 
 exports.getRecordByBusinessId = (req,res) =>{
 
-    sqlQuery = " SELECT add_business_id,YEAR(transaction_date) AS year,SUM(CASE WHEN category_type = 'Cash In' THEN transaction_amount ELSE 0 END) AS \`in\`,SUM(CASE WHEN category_type = 'Cash Out' THEN transaction_amount ELSE 0 END) AS \`out\` FROM tbl_transaction WHERE add_business_id = ? GROUP BY add_business_id, YEAR(transaction_date)ORDER BY  year, add_business_id;";
+    sqlQuery = "SELECT add_business_id,YEAR(transaction_date) AS year,SUM(CASE WHEN category_type = 'Cash In' THEN transaction_amount ELSE 0 END) AS `in`,SUM(CASE WHEN category_type = 'Cash Out' THEN transaction_amount ELSE 0 END) AS `out` FROM tbl_transaction WHERE add_business_id = ? GROUP BY add_business_id, YEAR(transaction_date) ORDER BY year, add_business_id;";
 
     connection.query(sqlQuery,[req.params.id],
         function(error,results,filds){
