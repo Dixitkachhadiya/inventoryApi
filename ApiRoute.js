@@ -13,5 +13,6 @@ module.exports = (app) => {
     // ============================ GetBusiness Api's =================================
 
     app.get('/getAllbusinessRecordByid/:id',apiRoute.getAllbusinessRecordByid);
+    app.post('/insertRecord',apiRoute.insertRecord);
 
 }

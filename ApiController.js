@@ -85,3 +85,21 @@ exports.getAllbusinessRecordByid = (req, res) => {
         }
     )
 }
+
+
+exports.insertRecord = (req, res) => {
+    // console.log(req.body.add_business_id);
+    sqlQuery = 'insert into tbl_business_category(add_business_id,business_category_name,buiness_category_type) values (?,?,?);';
+
+    connection.query(sqlQuery, [
+        req.body.add_business_id,
+        req.body.business_category_name,
+        req.body.buiness_category_type
+    ], function (error, results, filds) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.end(JSON.stringify(results));
+        }
+    })
+}
