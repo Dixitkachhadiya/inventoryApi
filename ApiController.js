@@ -242,7 +242,7 @@ exports.getRecordByBusinessId = (req, res) => {
 
 
 exports.insertuserdetails = (req, res) => {
-    var sqlQuery = 'INSERT INTO `tbl_signup` (`id`, `name`, `email`, `password`, `confirem_password`) VALUES ( ?, ?, ?, ?);';
+    var sqlQuery = 'INSERT INTO `tbl_signup` (`name`, `email`, `password`, `confirem_password`) VALUES ( ?, ?, ?, ?);';
 
     connection.query(sqlQuery,
         [
