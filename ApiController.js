@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const { json } = require('stream/consumers');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+
 
 const connection = mysql.createConnection({
     host: 'bnmxydikyq8j8roamwwq-mysql.services.clever-cloud.com',
@@ -241,18 +241,15 @@ exports.getRecordByBusinessId = (req, res) => {
 }
 
 
-exports.insertuserdetails = async (req, res) => {
-    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-    const hashedCFPassword = await bcrypt.hash(req.body.confirem_password, 10);
-
+exports.insertuserdetails = (req, res) => {
     var sqlQuery = 'insert into tbl_signup(name,email,password,confirem_password) values (?,?,?,?);';
 
     connection.query(sqlQuery,
         [
             req.body.name,
             req.body.email,
-            hashedPassword,
-            hashedCFPassword
+            req.body.password,
+            req.body.confirem_password
         ], function (error, results, filds) {
             if (error) {
                 console.log(error)
