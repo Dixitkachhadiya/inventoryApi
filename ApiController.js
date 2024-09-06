@@ -2,6 +2,7 @@ const mysql = require('mysql2');
 const cors = require('cors');
 const { json } = require('stream/consumers');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 const connection = mysql.createConnection({
     host: 'bnmxydikyq8j8roamwwq-mysql.services.clever-cloud.com',
@@ -199,7 +200,7 @@ exports.getRecordFromEditCashinout = (req, res) => {
     )
 }
 
-exports.updatecashinandoutRecord = (req,res) =>{    
+exports.updatecashinandoutRecord = (req, res) => {
     console.log(req.params.id);
     sqlQuery = "update tbl_transaction set business_category_id = ?,transaction_date = ?, category_type = ?, transaction_remark = ?, transaction_amount = ?, add_business_id = ? where transaction_id = ?;";
 
@@ -212,8 +213,8 @@ exports.updatecashinandoutRecord = (req,res) =>{
         req.body.add_business_id
     ]
 
-    connection.query(sqlQuery,[...useParams,req.params.id],
-        function(error,results,filds){
+    connection.query(sqlQuery, [...useParams, req.params.id],
+        function (error, results, filds) {
             if (error) {
                 console.log(error);
             } else {
@@ -224,12 +225,12 @@ exports.updatecashinandoutRecord = (req,res) =>{
 }
 
 
-exports.getRecordByBusinessId = (req,res) =>{
+exports.getRecordByBusinessId = (req, res) => {
 
     sqlQuery = "SELECT add_business_id,YEAR(transaction_date) AS year,SUM(CASE WHEN category_type = 'Cash In' THEN transaction_amount ELSE 0 END) AS `in`,SUM(CASE WHEN category_type = 'Cash Out' THEN transaction_amount ELSE 0 END) AS `out` FROM tbl_transaction WHERE add_business_id = ? GROUP BY add_business_id, YEAR(transaction_date) ORDER BY year, add_business_id;";
 
-    connection.query(sqlQuery,[req.params.id],
-        function(error,results,filds){
+    connection.query(sqlQuery, [req.params.id],
+        function (error, results, filds) {
             if (error) {
                 console.log(error);
             } else {
@@ -237,4 +238,26 @@ exports.getRecordByBusinessId = (req,res) =>{
             }
         }
     )
+}
+
+
+exports.insertuserdetails = async (req, res) => {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const hashedCFPassword = await bcrypt.hash(req.body.confirem_password, 10);
+
+    var sqlQuery = 'insert into tbl_signup(name,email,password,confirem_password) values (?,?,?,?);';
+
+    connection.query(sqlQuery,
+        [
+            req.body.name,
+            req.body.email,
+            hashedPassword,
+            hashedCFPassword
+        ], function (error, results, filds) {
+            if (error) {
+                console.log(error)
+            } else {
+                res.end(JSON.stringify(results))
+            }
+        })
 }

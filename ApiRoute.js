@@ -30,4 +30,9 @@ module.exports = (app) => {
 
      app.get('/getRecordByBusinessId/:id',apiRoute.getRecordByBusinessId);
 
+
+    //  =================================== Sign in & Sign up Form ====================
+
+    app.post('/insertuserdetails',apiRoute.insertuserdetails);
+
 }
