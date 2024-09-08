@@ -259,3 +259,37 @@ exports.insertuserdetails = (req, res) => {
             }
         })
 }
+
+
+exports.postemail = async (req, res) => {
+
+    var sqlquery = 'select * from tbl_signup WHERE email = ?;'
+
+    connection.query(sqlquery, [req.body.email], async function (error, results, fields) {
+        if (error) {
+            console.log(error);
+        } else if (results.length === 0) {
+            res.send({
+                "message": "Invalid email",
+                data: []
+            });
+        } else {
+            const user = results[0];
+            const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
+
+            if (isPasswordMatch) {
+                console.log('Login successfully');
+                res.send({
+                    "message": "Login successfully",
+                    data: [user]
+                });
+            } else {
+                res.send({
+                    "message": "Password is invalid",
+                    data: []
+                });
+            }
+
+        }
+    });
+}

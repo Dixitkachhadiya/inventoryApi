@@ -34,5 +34,6 @@ module.exports = (app) => {
     //  =================================== Sign in & Sign up Form ====================
 
     app.post('/insertuserdetails',apiRoute.insertuserdetails);
+    app.post('/postemail',apiRoute.postemail);
 
 }
