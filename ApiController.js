@@ -275,9 +275,7 @@ exports.postemail = async (req, res) => {
             });
         } else {
             const user = results[0];
-            const isPasswordMatch = await bcrypt.compare(req.body.password, user.password);
-
-            if (isPasswordMatch) {
+            if (req.body.password, user.password) {
                 console.log('Login successfully');
                 res.send({
                     "message": "Login successfully",
